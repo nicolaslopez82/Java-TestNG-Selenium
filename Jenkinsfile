@@ -12,7 +12,8 @@ node {
         stage 'Test'
         sauce('saucelabs') {
             sauceconnect(useGeneratedTunnelIdentifier: true, verboseLogging: true) {
-                sh "mvn test"
+//                 sh "mvn test"
+                sh "mvn -Dtest=W3CTestNG test"
             }
         }
     }
