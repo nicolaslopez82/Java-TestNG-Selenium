@@ -33,10 +33,10 @@ public class W3CTestNG {
      return new Object[][] {
              //{new ChromeOptions()},
              {new FirefoxOptions(), "latest", "Windows 10"},
-             {new FirefoxOptions(), "58.0", "OS X 10.12"},
-             {new EdgeOptions(), "latest", "Windows 10"},
-             {new SafariOptions(), "latest", "OS X 10.12"},
-             {new InternetExplorerOptions(), "latest", "Windows 7"},
+//             {new FirefoxOptions(), "58.0", "OS X 10.12"},
+//             {new EdgeOptions(), "latest", "Windows 10"},
+//             {new SafariOptions(), "latest", "OS X 10.12"},
+//             {new InternetExplorerOptions(), "latest", "Windows 7"}//,
         };
     }
 
@@ -49,8 +49,8 @@ public class W3CTestNG {
      * @throws MalformedURLException
      */
     public void createDriverOptions(MutableCapabilities options, String browserVersion, String platformName) throws MalformedURLException{
-        String username = System.getenv("SAUCE_USERNAME");
-        String accesskey = System.getenv("SAUCE_ACCESS_KEY");
+        String username = "nicolaslopez82";//System.getenv("SAUCE_USERNAME");
+        String accesskey = "c4365a58-6230-4dbd-b78f-a54bb6ce4ded";//System.getenv("SAUCE_ACCESS_KEY");
 
         options.setCapability("browserVersion", browserVersion);
         options.setCapability("platformName", platformName);
@@ -62,7 +62,8 @@ public class W3CTestNG {
 
         options.setCapability("sauce:options", sauceOptions);
 
-        driver = new RemoteWebDriver(new URL("https://" + username + ":" + accesskey + "@ondemand.saucelabs.com/wd/hub"), options);
+        driver = new RemoteWebDriver(new URL("https://" + username + ":" + accesskey + "@ondemand.us-west-1.saucelabs.com:443/wd/hub"), options);
+//        driver = new RemoteWebDriver(new URL("https://" + username + ":" + accesskey + "@ondemand.saucelabs.com/wd/hub"), options);
     }
 
     @AfterMethod
@@ -75,8 +76,11 @@ public class W3CTestNG {
         this.createDriverOptions(options, browserVersion, platformName);
 
         GuineaPigPage page = GuineaPigPage.visitPage(driver);
+        String currentUrl = page.driver.getCurrentUrl();
         String title = page.driver.getTitle();
 
-        Assert.assertTrue(title.contains("Sauce"));
+//        Assert.assertTrue(title.contains("Sauce"));
+//        Assert.assertTrue(title.contains("CellTrak  - Login"));
+        Assert.assertTrue(currentUrl.contains("staging"));
     }
 }

@@ -6,6 +6,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
+import java.io.File;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.rmi.UnexpectedException;
@@ -33,10 +34,10 @@ public class TextInputTest extends TestBase {
         this.annotate("Visiting GuineaPig page...");
         GuineaPigPage page = GuineaPigPage.visitPage(driver);
 
-        this.annotate(String.format("Submitting comment: \"%s\"", commentInputText));
+        this.annotate(String.format("Submitting comment: " + File.separator + commentInputText + File.separator));
         page.submitComment(commentInputText);
 
-        this.annotate(String.format("Asserting submitted comment is: \"%s\"", commentInputText));
+        this.annotate(String.format("Asserting submitted comment is: " + File.separator + commentInputText + File.separator));
         Assert.assertTrue(page.getSubmittedCommentText().contains(commentInputText));
     }
 
