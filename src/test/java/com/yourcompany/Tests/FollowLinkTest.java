@@ -11,7 +11,7 @@ import java.net.MalformedURLException;
 import java.rmi.UnexpectedException;
 
 /**
- * Created by mehmetgerceker on 12/7/15.
+ * Created by nicolaslopez82 on 12/7/15.
  */
 
 public class FollowLinkTest extends TestBase {
